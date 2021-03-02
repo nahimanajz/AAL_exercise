@@ -99,23 +99,20 @@ const movies = {
 
 class App extends Component {
   
-  // map user who are in profile
-  //map movies movie  who are in profile
-  /* {
-            	users && users.map(user=> (
-              		<li>{user.id}</li>
-              ))
-            	
-            }
-  
-*/
+ 
+
   render() {
-    const {1:one ,2:two ,3:three ,4:four, 5:five, 6:six } = users;    
-    const newUser = {one, two, three, four, five, six};
-    newUser.one.map(user=> console.log(user));
-    //console.log(newUser);
-    //users[1].map((user)=> console.log(user));
-    return (
+  let data = [];
+     profiles.map(profile => {
+     Object.values(users).filter(user=>{       
+       	Object.values(movies).filter(movie=>{       
+          if(user.id === parseInt(profile.userID) && parseInt(profile.favoriteMovieID) === movie.id ){   
+          		data.push(`${user.name} favorite movie is ${movie.name}`);  
+        	} 
+        })   
+     })              
+        })
+      return (
       <div>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -123,7 +120,9 @@ class App extends Component {
         </header>
         <h2>Favorite Movies </h2>
 		<ul>
-			
+			{
+            	data.map(data=> <li key={data}> {data}</li>)
+            }
 		</ul>
       </div>
     );
