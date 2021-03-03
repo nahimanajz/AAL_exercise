@@ -111,7 +111,7 @@ class App extends Component {
         <h2>How Popular is Your Favorite Movie?</h2>
 		<ul>
 			{
-            	Object.values(movies).map(movie=>(
+            	Object.values(movies).map(movie => (
                    <div key={movie.id}>
               		<h2>{movie.name}</h2>
                     <p>Liked By:</p>
