@@ -11,10 +11,10 @@ const numCorrect = 0;
 
 class App extends Component {
    state = {
-   		x: 1,
- 		y: 4,
-		z: 6.0,
-     	p: 1.0 ,
+   		x: Math.floor(Math.random() * 100),
+ 		y: Math.floor(Math.random() * 100),
+		z: Math.floor(Math.random() * 100),
+     	p: Math.floor(Math.random() * 100) + this.x + this.y + this.z ,
         numOfQeuestion: 0,
         numCorrect:  0 
    };
@@ -22,11 +22,11 @@ class App extends Component {
      
      this.setState((prevState) => ({
        x:  Math.floor(Math.random() * 100),
-       y: prevState.y + Math.floor(Math.random() * 100),
-       z: prevState.z + Math.floor(Math.random() * 100),
+       y:  Math.floor(Math.random() * 100),
+       z:  Math.floor(Math.random() * 100),
        p:  prevState.x + prevState.y + prevState.z,
        numOfQeuestion: prevState.numOfQeuestion +1,
-       numCorrect: proposedAnswer === prevState.x + prevState.y + prevState.z  ? prevState.numCorrect : prevState.numCorrect++
+       numCorrect: prevState.p === prevState.x + prevState.y + prevState.z  ? prevState.numCorrect : prevState.numCorrect++
      })
     );
 
