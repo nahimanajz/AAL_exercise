@@ -1,23 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-//import Form './Form';
+import Form from './Form';
 import Items from './Items';
+import RemoveLastItem from './DeleteItem';
+
 
 class App extends React.Component {
   state = {
-    value: '',
     items: [],
   };
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-  };
-
-  addItem = event => {
-    event.preventDefault();
-    this.setState(oldState => ({
-      items: [...oldState.items, this.state.value],
+  addItem = item => {
+    this.setState((prevState)=>({
+     items: [...prevState.items, item]
     }));
   };
 
@@ -42,20 +38,9 @@ class App extends React.Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <h2>Shopping List</h2>
-        <form onSubmit={this.addItem}>
-            <input
-              type="text"
-              placeholder="Enter New Item"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-            <button disabled={this.inputIsEmpty()}>Add</button>
-        </form>
-
-        <button onClick={this.deleteLastItem} disabled={this.noItemsFound()}>
-          Delete Last Item
-        </button>
-	     	<Items items = {this.state.items} /> 
+        <Form addNewItem={this.addItem} />
+        <RemoveLastItem LastItemToDelete={this.deleteLastItem} isTheListEmpty={this.noItemsFound} />
+	     <Items items = {this.state.items} /> 
       </div>
     );
   }

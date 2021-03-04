@@ -1,19 +1,37 @@
 import React from 'react';
-import './App.css';
+import PropTypes from 'prop-types';
 
-export default function Form({value, handleChange}){
+ class Form extends React.Component{
+  state = { value: ''};
+   
+inputChangeHandler(newText){
+	 this.setState(()=>({
+      value:newText
+     }))	 
+}
+ inputHasNoValue =() => this.state.value === '';
 
- return (
- 	<form onSubmit={this.addItem}>
+submitRecord =(e)=> {
+  e.preventDefault();
+ this.props.addNewItem(this.state.value);
+}
+
+render() {
+	return (
+ 	<form onSubmit={this.submitRecord}>
           <input
             type="text"
             placeholder="Enter New Item"
-            value={value}
-            onChange={handleChange}
+            value={this.state.value}
+            onChange={(e)=>this.inputChangeHandler(e.target.value)}
           />
-          <button disabled={this.inputIsEmpty()}>Add</button>
+          <button disabled={this.inputHasNoValue()}>Add</button>
      </form>
  )
+} 
 }
+Form.propTypes= {
+addNewItem: PropTypes.func.isRequired
+};
 
-export default App;
+export default Form;
