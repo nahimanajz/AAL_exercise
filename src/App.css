@@ -50,6 +50,7 @@ form,ul {
  flex:2 1 400px;
   background: #4D4847;
 }
+.hide { display:none; }
 ul li {
 list-style-type: none;
  font-size: 18px;
